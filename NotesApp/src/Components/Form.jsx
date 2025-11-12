@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 
-const Form = ({handledata}) => {
+const Form = ({ handledata }) => {
 
-    const [title,setTitle] = useState('');
-    const [desc,setDesc] = useState('');
-    const [task,setTask] = useState([]);
+    const [title, setTitle] = useState('');
+    const [desc, setDesc] = useState('');
+    const [task, setTask] = useState([]);
 
     const handleFormClick = (e) => {
         e.preventDefault();
-        const newTask = {Title: title, Desc: desc};
+        const newTask = { Title: title, Desc: desc };
         const updatedData = [...task, newTask];
         setTask([...task, newTask]);
         handledata(updatedData);
@@ -21,15 +21,24 @@ const Form = ({handledata}) => {
         setTitle(e.target.value);
     }
 
-      const handleDescClick = (e) => {
+    const handleDescClick = (e) => {
         setDesc(e.target.value);
     }
-    
+
     return (
         <div className="md:w-1/2 sm:w-full  h-full flex items-center justify-center md:border-r-2">
-            <form className="px-10 py-10 flex flex-col gap-10 border rounded-md m-5 w-full">
-                <input type="text" value={title} onChange={handleTitleClick} placeholder='Enter Note Title...' className="border text-xl w-full p-3 outline-none rounded-md" />
-                <textarea value={desc} placeholder='Enter Note Description...' onChange={handleDescClick} className="border text-xl w-full p-3 outline-none rounded-md" />
+            <form className="px-10 text-black py-10  border rounded-md m-5 w-full">
+                <div className='flex flex-col gap-10'>
+                    <input type="text" value={title} onChange={handleTitleClick} placeholder='Enter Note Title...' className="border text-xl w-full p-3 outline-none rounded-md" />
+                    <textarea value={desc} placeholder='Enter Note Description...' onChange={handleDescClick} className="border text-xl w-full p-3 outline-none rounded-md" />
+                </div>
+                <label className="flex items-center gap-3 mt-2 mb-10 text-md font-bold cursor-pointer select-none">
+                    <span>This might be important — or maybe it’s not, check!</span>
+                    <input
+                        type="checkbox"
+                        className="w-5 h-5 accent-blue-500 rounded cursor-pointer"
+                    />
+                </label>
                 <button onClick={handleFormClick} className="border text-xl hover:bg-blue-200 w-full p-3 rounded-md">
                     SUBMIT
                 </button>

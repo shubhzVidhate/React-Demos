@@ -4,16 +4,19 @@ const Form = ({ handledata }) => {
 
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
+    const [imp, setImp] = useState(false);
     const [task, setTask] = useState([]);
 
     const handleFormClick = (e) => {
         e.preventDefault();
-        const newTask = { Title: title, Desc: desc };
+        const newTask = { Title: title, Desc: desc, Important: imp };
         const updatedData = [...task, newTask];
         setTask([...task, newTask]);
         handledata(updatedData);
+        
         setTitle('');
         setDesc('');
+        setImp(false);
 
     }
 
@@ -23,6 +26,10 @@ const Form = ({ handledata }) => {
 
     const handleDescClick = (e) => {
         setDesc(e.target.value);
+    }
+
+    const handleCheckboxClicked = (e) => {
+        setImp(e.target.checked);
     }
 
     return (
@@ -35,6 +42,8 @@ const Form = ({ handledata }) => {
                 <label className="flex items-center gap-3 mt-2 mb-10 text-md font-bold cursor-pointer select-none">
                     <span>This might be important — or maybe it’s not, check!</span>
                     <input
+                    onChange={handleCheckboxClicked}
+                    checked={imp}
                         type="checkbox"
                         className="w-5 h-5 accent-blue-500 rounded cursor-pointer"
                     />

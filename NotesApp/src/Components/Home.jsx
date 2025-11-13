@@ -4,6 +4,11 @@ import Notes from './Notes';
 
 const Home = () => {
     const [newData,setNewData] = useState([]);
+
+    const handleXCLick = (index)=>{
+        const filteredData = newData.filter((item,idx)=> idx !== index);
+        setNewData(filteredData);
+    }
     const handledatafromneiborchild = (data) => {
         setNewData(data);
     }
@@ -17,7 +22,7 @@ const Home = () => {
             </div>
             <div className="h-[91.4%] md:flex bg-blue-100">
                 <Form handledata={handledatafromneiborchild} />
-                <Notes  data={newData}/>
+                <Notes  data={newData} handleXCLick={handleXCLick}/>
             </div>
         </div>
     )

@@ -1,5 +1,4 @@
-
-import Home from './Components/Home';
+import Home from "./Components/HOme";
 
 const App = () => {
   return (
